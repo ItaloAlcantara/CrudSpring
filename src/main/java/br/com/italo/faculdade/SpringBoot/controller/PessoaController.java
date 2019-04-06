@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.italo.faculdade.SpringBoot.model.Pessoa;
 import br.com.italo.faculdade.SpringBoot.repository.PessoaRepository;
+import br.com.italo.faculdade.SpringBoot.service.PessoaService;
 
 @Controller
 public class PessoaController {
@@ -21,7 +22,7 @@ public class PessoaController {
 	@Autowired
 	private PessoaRepository pessoaRepository;
 	@Autowired
-	private ListaPessoas lista;
+	private PessoaService lista;
 	
 	@GetMapping(value="/cadastropessoa")
 	public ModelAndView inicio() {
@@ -37,7 +38,6 @@ public class PessoaController {
 	
 	@GetMapping(value="/listapessoas")
 	public ModelAndView pessoas() {
-		
 		return lista.listaPessoas();
 	}
 	

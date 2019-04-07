@@ -21,7 +21,7 @@ public class TelefoneService {
 	@Autowired
 	private TelefoneRepository telefoneRepository;
 	
-	@PostMapping("**/addTelefonePessoa/{pessoaid}")
+	
 	public ModelAndView addTelefonePessoa(Telefone telefone, Long pessoaid) {
 		Pessoa pessoa = pessoaRepository.findById(pessoaid).get();
 		telefone.setPessoa(pessoa);

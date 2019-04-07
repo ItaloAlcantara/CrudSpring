@@ -25,8 +25,7 @@ public class PessoaController {
 	private PessoaRepository pessoaRepository;
 	@Autowired
 	private PessoaService pessoaService;
-	@Autowired
-	private TelefoneRepository telefoneRepository;
+	
 
 	@GetMapping(value = "/cadastropessoa")
 	public ModelAndView inicio() {
@@ -35,42 +34,34 @@ public class PessoaController {
 
 	@PostMapping(value = "**/salvarpessoa")
 	public ModelAndView salvar(Pessoa pessoa) {
-		pessoaRepository.save(pessoa);
-		return pessoaService.listaPessoas();
+		return pessoaService.salvar(pessoa);
 	}
 
 	@GetMapping(value = "/listapessoas")
-	public ModelAndView pessoas() {
+	public ModelAndView pessoasLista() {
 		return pessoaService.listaPessoas();
 	}
 
 	@GetMapping(value = "/editarpessoa/{idpessoa}")
 	public ModelAndView editar(@PathVariable("idpessoa") Long idpessoa) {
-
 		return pessoaService.editarPessoa(idpessoa);
 	}
 	
 	@GetMapping(value="/telefones/{idpessoa}")
 	public ModelAndView telefones(@PathVariable("idpessoa") Long idpessoa) {
-		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
-		ModelAndView modelAndView = new ModelAndView("cadastro/telefones");
-		modelAndView.addObject("pessoaobj",pessoa.get());
-		return modelAndView;
+		
+		return pessoaService.pessoaTelefones(idpessoa);
 	}
 	
 
 	@GetMapping(value = "/excluirpessoa/{idpessoa}")
 	public ModelAndView excluir(@PathVariable("idpessoa") Long idpessoa) {
-		pessoaRepository.deleteById(idpessoa);
-		pessoaService.startPessoa().addObject("pessoaobj", pessoaRepository.findAll());
-		return pessoaService.listaPessoas();
+		return pessoaService.excluir(idpessoa);
 	}
 
 	@PostMapping("**/nomepesquisa")
 	public ModelAndView consulta(@RequestParam("nomepesquisa") String nomepesquisa) {
-
-		pessoaService.startPessoa().addObject("pessoas", pessoaRepository.findPessoaByName(nomepesquisa));
-		return pessoaService.startPessoa();
+		return pessoaService.consulta(nomepesquisa);
 
 	}
 	

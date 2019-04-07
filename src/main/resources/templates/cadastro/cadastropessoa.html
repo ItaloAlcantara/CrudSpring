@@ -91,7 +91,9 @@ color:white;
 			<th>Nome</th>
 			<th>Sobrenome</th>
 			<th>Idade</th>
-			<th>Editar/Excluir</th>
+			<th>Editar</th>
+			<th>Delete</th>
+			<th>Adicionar</th>
 			
 		</thead>
 		<tr th:each="pessoa : ${pessoas}">
@@ -99,12 +101,20 @@ color:white;
 			<td th:text="${pessoa.nome}"></td>
 			<td th:text="${pessoa.sobrenome}"></td>
 			<td th:text="${pessoa.idade}"></td>
-			<td><a class="waves-effect waves-light btn"
+			<td><a class="waves-effect waves-light btn-small"
 				th:href="@{/editarpessoa/{idpessoa}(idpessoa=${pessoa.id})}"><i
 					class="material-icons right">edit</i>Edite</a>
-			<a class="waves-effect waves-light btn"
+			</td>
+			<td>
+			<a class="waves-effect waves-light btn-small"
 				th:href="@{/excluirpessoa/{idpessoa}(idpessoa=${pessoa.id})}"><i
-					class="material-icons right">delete</i>Delete</a></td>
+					class="material-icons right">delete</i>Delete</a>
+			</td>
+			<td>
+			<a class="waves-effect waves-light btn-small"
+				th:href="@{/telefones/{idpessoa}(idpessoa=${pessoa.id})}"><i
+					class="material-icons right">add</i>Telefones</a>
+			</td>
 
 		</tr>
 	</table>

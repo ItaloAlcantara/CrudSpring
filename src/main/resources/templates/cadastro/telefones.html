@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -44,6 +44,26 @@ color:white;
 				<p>Idade: <span  th:text=${p.idade}></span></p>
 			</div>
 		</table>
+	</div>
+	
+	<h5>Telefones</h5>
+	<div class="row">
+		<form th:action="@{/addTelefonePessoa/{pessoaid}(pessoaid=${pessoaobj.id})}" method="post" class="col s12">
+			<div class="row">
+				<div class="inpult-field col s6">
+					<label class="active"  for ="numero">Número</label>
+					 <input  id="numero" name="numero" class="validate" placeholder="Ex.: (00) 00000-0000" >	
+				</div>
+				<div class="inpult-field col s6">
+					<label class="active"  for ="tipo">Tipo</label>
+					 <input  id="tipo" name="tipo" class="validate">	
+				</div>
+			</div>
+			
+			<button class="btn-small waves-effect waves-light" type="submit" value="Salvar" name="action">
+				Adicionar 
+				<i class="material-icons right">add</i>
+		</form>
 	</div>
 	
 	

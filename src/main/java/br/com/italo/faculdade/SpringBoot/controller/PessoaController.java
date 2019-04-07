@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.italo.faculdade.SpringBoot.model.Pessoa;
+import br.com.italo.faculdade.SpringBoot.model.Telefone;
 import br.com.italo.faculdade.SpringBoot.repository.PessoaRepository;
+import br.com.italo.faculdade.SpringBoot.repository.TelefoneRepository;
 import br.com.italo.faculdade.SpringBoot.service.PessoaService;
 
 @Controller
@@ -23,6 +25,8 @@ public class PessoaController {
 	private PessoaRepository pessoaRepository;
 	@Autowired
 	private PessoaService pessoaService;
+	@Autowired
+	private TelefoneRepository telefoneRepository;
 
 	@GetMapping(value = "/cadastropessoa")
 	public ModelAndView inicio() {
@@ -69,5 +73,6 @@ public class PessoaController {
 		return pessoaService.startPessoa();
 
 	}
+	
 
 }

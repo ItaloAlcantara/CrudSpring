@@ -30,6 +30,12 @@ public class PessoaService {
 		andView.addObject("pessoaobj", new Pessoa());
 		return andView;
 	}
+	
+	public ModelAndView startPessoa(String rota) {
+		ModelAndView andView = new ModelAndView(rota);
+		andView.addObject("pessoaobj", new Pessoa());
+		return andView;
+	}
 
 	public ModelAndView editarPessoa(@PathVariable("idpessoa") Long idpessoa) {
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);

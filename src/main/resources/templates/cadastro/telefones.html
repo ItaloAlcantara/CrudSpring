@@ -74,7 +74,15 @@ color:white;
 		<tr th:each="telefone : ${telefones}">
 			<td th:text="${telefone.numero}"></td>
 			<td th:text="${telefone.tipo}"></td>
+			
+			<td>
+			<a class="waves-effect waves-light btn-small"
+				th:href="@{/excluirtelefone/{idtelefone}(idtelefone=${telefone.id})}"><i
+					class="material-icons right">delete</i>Delete</a>
+			</td>
+			
 		</tr>
+		
 	</table>
 
 	

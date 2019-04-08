@@ -22,15 +22,22 @@ public class TelefoneService {
 	private TelefoneRepository telefoneRepository;
 	
 	
-	public ModelAndView listaTelefones(Telefone telefone, @PathVariable("pessoaid") Long pessoaid) {
+	public ModelAndView addTelefones(Telefone telefone, @PathVariable("pessoaid") Long pessoaid) {
 		Pessoa pessoa = pessoaRepository.findById(pessoaid).get();
 		telefone.setPessoa(pessoa);
 		telefoneRepository.save(telefone);
-		
+		return listaTelefones(telefone, pessoaid);
+	}
+	
+	public ModelAndView listaTelefones(Telefone telefone, @PathVariable("pessoaid") Long pessoaid) {
+		Pessoa pessoa = pessoaRepository.findById(pessoaid).get();
 		ModelAndView modelAndView= new ModelAndView("cadastro/telefones");
 		modelAndView.addObject("pessoaobj",pessoa);
 		modelAndView.addObject("telefones",telefoneRepository.getTelefones(pessoaid));
 		return modelAndView;
 	}
+	
+	
 }
+
 	

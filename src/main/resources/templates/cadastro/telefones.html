@@ -65,6 +65,18 @@ color:white;
 				<i class="material-icons right">add</i>
 		</form>
 	</div>
+		
+		<table class="striped">
+		<thead>
+			<th>Número</th>
+			<th>Tipo</th>			
+		</thead>
+		<tr th:each="telefone : ${telefones}">
+			<td th:text="${telefone.numero}"></td>
+			<td th:text="${telefone.tipo}"></td>
+		</tr>
+	</table>
+
 	
 	
 	

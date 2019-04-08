@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.italo.faculdade.SpringBoot.model.Pessoa;
 import br.com.italo.faculdade.SpringBoot.repository.PessoaRepository;
+import br.com.italo.faculdade.SpringBoot.repository.TelefoneRepository;
 
 @Service
 public class PessoaService {
@@ -18,6 +19,9 @@ public class PessoaService {
 	
 	@Autowired
 	private PessoaRepository pessoaRepository;
+	
+	@Autowired
+	private TelefoneRepository telefoneRepository;
 
 	public ModelAndView listaPessoas() {
 		ModelAndView andView = new ModelAndView("cadastro/cadastropessoa");
@@ -54,6 +58,7 @@ public class PessoaService {
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
 		ModelAndView modelAndView = new ModelAndView("cadastro/telefones");
 		modelAndView.addObject("pessoaobj",pessoa.get());
+		modelAndView.addObject("telefones",telefoneRepository.getTelefones(idpessoa));
 		return modelAndView;
 	}
 	

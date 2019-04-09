@@ -1,12 +1,15 @@
 package br.com.italo.faculdade.SpringBoot.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.italo.faculdade.SpringBoot.model.Pessoa;
@@ -43,16 +46,30 @@ public class PessoaService {
 		return andView;
 	}
 
-	public ModelAndView editarPessoa(@PathVariable("idpessoa") Long idpessoa) {
+	public ModelAndView editarPessoa(Long idpessoa) {
+		ModelAndView andView = new ModelAndView("cadastro/cadastropessoa");
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);
-		startPessoa().addObject("pessoaobj", pessoa.get());
-		return startPessoa();
+		andView.addObject("pessoaobj", pessoa.get());
+		return andView;
 	}
 	
-	public ModelAndView salvar(Pessoa pessoa) {
+	public ModelAndView salvar(@Valid Pessoa pessoa, BindingResult bindingResult) {
+		
+		/*
+		 * if(!bindingResult.hasErrors()) { ModelAndView modelAndView = new
+		 * ModelAndView("cadastro/cadastropessoa"); Iterable<Pessoa> pessoasIt =
+		 * pessoaRepository.findAll(); modelAndView.addObject("pessoas", pessoasIt);
+		 * modelAndView.addObject("pessoaobj", pessoa);
+		 * 
+		 * List<String> validacao = new ArrayList<String>(); for(ObjectError
+		 * objErro:bindingResult.getAllErrors()) {
+		 * validacao.add(objErro.getDefaultMessage());//Vem das anotações da class }
+		 * modelAndView.addObject("validacao",validacao); return modelAndView; }else {
+		 */
 		pessoaRepository.save(pessoa);
 		return listaPessoas();
-	}
+		}
+	
 	
 	public ModelAndView pessoaTelefones(Long idpessoa) {
 		Optional<Pessoa> pessoa = pessoaRepository.findById(idpessoa);

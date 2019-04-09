@@ -29,6 +29,11 @@ color:white;
 	</br>
 	<h5>Cadastro de pessoas</h5>
 	</br>
+	<div th:each = "v : ${validacao}">
+		<span th:text="${v}"></span>
+	</div>
+	
+	</br>
 	<div class="row">
 		<form action="salvarpessoa" id="formpessoa" method="post" th:object="${pessoaobj}"
 			class="col s12">

@@ -19,8 +19,7 @@ public class TelefoneController {
 		
 	@Autowired
 	private TelefoneService telefoneService;
-	@Autowired
-	private TelefoneRepository telefoneRepository;
+
 	@PostMapping("**/addTelefonePessoa/{pessoaid}")
 	public ModelAndView addTelefonePessoa(Telefone telefone, @PathVariable("pessoaid") Long pessoaid) {
 		
@@ -32,5 +31,10 @@ public class TelefoneController {
 	public ModelAndView removeTelefone(@PathVariable("idtelefone") Long idtelefone) {
 		return telefoneService.removeTelefone(idtelefone);
 		
+	}
+	
+	@GetMapping("/editartelefone/{idtelefone}")
+	public ModelAndView editarTelefone(@PathVariable("idtelefone") Long idtelefone) {
+		return telefoneService.editarTelefone(idtelefone);
 	}
 }

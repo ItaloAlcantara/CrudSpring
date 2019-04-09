@@ -48,14 +48,15 @@ color:white;
 	
 	<h5>Telefones</h5>
 	<div class="row">
-		<form th:action="@{/addTelefonePessoa/{pessoaid}(pessoaid=${pessoaobj.id})}" method="post" class="col s12">
+		<form th:action="@{/addTelefonePessoa/{pessoaid}(pessoaid=${pessoaobj.id})}" id="formtelefone"method="post" class="col s12" >
 			<div class="row">
+						
 				<div class="inpult-field col s6">
-					<label class="active"  for ="numero">Número</label>
+					<label class="active"  th:for ="numero">Número</label>
 					 <input  id="numero" name="numero" class="validate" placeholder="Ex.: (00) 00000-0000" >	
 				</div>
 				<div class="inpult-field col s6">
-					<label class="active"  for ="tipo">Tipo</label>
+					<label class="active"  th:for ="tipo">Tipo</label>
 					 <input  id="tipo" name="tipo" class="validate">	
 				</div>
 			</div>
@@ -75,11 +76,13 @@ color:white;
 			<td th:text="${telefone.numero}"></td>
 			<td th:text="${telefone.tipo}"></td>
 			
+			
 			<td>
 			<a class="waves-effect waves-light btn-small"
 				th:href="@{/excluirtelefone/{idtelefone}(idtelefone=${telefone.id})}"><i
 					class="material-icons right">delete</i>Delete</a>
 			</td>
+
 			
 		</tr>
 		
